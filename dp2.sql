@@ -32,7 +32,7 @@ CREATE TABLE `products` (
   `productID` int(11) NOT NULL,
   `productName` text NOT NULL,
   `productQuantity` int(11) NOT NULL,
-  `productPrice` int(11) NOT NULL
+  `productPrice` int(11) NOT NULL,
   `solddate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
