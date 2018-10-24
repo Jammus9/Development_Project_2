@@ -1,6 +1,4 @@
-<?php
-	session_start();
-?>
+<?php include('includes\dbconnect.php'); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -13,7 +11,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Sales Reporting </title>
+    <title>Sales Record</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -33,7 +31,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Sales Reporting</a>
+      <a class="navbar-brand mr-1" href="product_overview.php">Family Aid Pharmacy Inc</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -69,40 +67,52 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="#">Dashboard</a>
+              <a href="product_overview.php">Product Overview</a>
             </li>
-            <li class="breadcrumb-item active">Tables</li>
+            <li class="breadcrumb-item active">Sales Record Table</li>
           </ol>
 
           <!-- DataTables Example -->
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
-              Data Table Example</div>
+              Sales Record Table</div>
             <div class="card-body">
               <div class="table-responsive">
                 <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>Product ID</th>
+                      <th>Product Name</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                        <th>Sold Date</th>
                     </tr>
                   </thead>
                   <tfoot>
                     <tr>
-                      <th>Name</th>
-                      <th>Position</th>
-                      <th>Office</th>
-                      <th>Age</th>
-                      <th>Start date</th>
-                      <th>Salary</th>
+                      <th>Product ID</th>
+                      <th>Product Name</th>
+                      <th>Quantity</th>
+                      <th>Price</th>
+                        <th>Sold Date</th>
                     </tr>
                   </tfoot>
                   <tbody>
+                      <?php
+						$query1 = "SELECT * from products";
+						$results = mysqli_query($DBConnect, $query1);
+						while ($row = mysqli_fetch_array($results)) {
+							echo "
+								<tr>
+									<td>".($row['productID'])."</td>
+									<td>".($row['productName'])."</td>
+									<td>".($row['productQuantity'])."</td>
+									<td>".($row['productPrice'])."</td>
+                                    <td>".($row['solddate'])."</td>
+								</tr>";
+						}
+					  ?>
                   </tbody>
                 </table>
               </div>
