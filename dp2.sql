@@ -33,14 +33,15 @@ CREATE TABLE `products` (
   `productName` text NOT NULL,
   `productQuantity` int(11) NOT NULL,
   `productPrice` int(11) NOT NULL
+  `solddate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`productID`, `productName`, `productQuantity`, `productPrice`) VALUES
-(4, 'asf', 12, 12);
+INSERT INTO `products` (`productID`, `productName`, `productQuantity`, `productPrice`, `solddate`) VALUES
+(4, 'asf', 12, 12, '2010-12-12');
 
 -- --------------------------------------------------------
 
