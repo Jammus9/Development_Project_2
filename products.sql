@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 24, 2018 at 04:23 PM
+-- Generation Time: Oct 25, 2018 at 02:56 AM
 -- Server version: 10.1.36-MariaDB
 -- PHP Version: 7.2.10
 
@@ -32,36 +32,16 @@ CREATE TABLE `products` (
   `productID` int(11) NOT NULL,
   `productName` text NOT NULL,
   `productQuantity` int(11) NOT NULL,
-  `productPrice` int(11) NOT NULL
+  `productPrice` int(11) NOT NULL,
+  `solddate` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `products`
 --
 
-INSERT INTO `products` (`productID`, `productName`, `productQuantity`, `productPrice`) VALUES
-(7, 'Something', 4, 1),
-(8, 'Something', 4, 1);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `users`
---
-
-CREATE TABLE `users` (
-  `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL,
-  `position` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `users`
---
-
-INSERT INTO `users` (`username`, `password`, `position`) VALUES
-('Manager@pharma.com', '123', 'Manager'),
-('a@a.com', '123', 'Staff');
+INSERT INTO `products` (`productID`, `productName`, `productQuantity`, `productPrice`, `solddate`) VALUES
+(4, 'asf', 12, 12, '2010-12-12');
 
 --
 -- Indexes for dumped tables
@@ -81,7 +61,7 @@ ALTER TABLE `products`
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `productID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
