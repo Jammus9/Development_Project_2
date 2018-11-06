@@ -42,15 +42,47 @@
         <li class="nav-item dropdown no-arrow mx-1">
           <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-bell fa-fw"></i>
-            <span class="badge badge-danger">9+</span>
+            
+              <?php
+              $con = mysqli_connect("localhost", "root", "", "dp2");
+              $count = 0;
+              $result = mysqli_query($con, "SELECT * from products");
+              ?>
+              
+              <?php
+              while($row = mysqli_fetch_assoc($result))
+                {
+                  if($row['productQuantity'] < 20)
+                  {
+                    $rows[] = $row;
+                    $count ++;  
+                  }
+                }
+
+                if($count > 0){ ?>
+                    <span class="badge badge-danger">
+                        <?php echo $count;?>
+                    </span>
+                 <?php } ?>
           </a>
+
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
+
+          <?php
+              foreach($rows as $row)
+                {
+                  if($row['productQuantity'] < 20)
+                  {
+                    echo 
+                    "<a class='dropdown-item' href='#'> Stock of ". " " . $row['productName'] . " only has " . $row['productQuantity'] . " " . "left</a>
+                     <div class='dropdown-divider'></div>"; 
+                  }
+                }
+                ?>
+            
+              </div>
+            </li>
+
 
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -113,8 +145,7 @@
                   </tfoot>
                   <tbody>
 
-
-
+            <!-- retrieve the product from the database -->
 					  <?php
 						$query1 = "SELECT * from products";
 						$results = mysqli_query($DBConnect, $query1);
@@ -129,8 +160,6 @@
 								</tr>";
 						}
 					  ?>
-
-
                   </tbody>
                 </table>
               </div>
