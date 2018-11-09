@@ -14,7 +14,7 @@
 <<<<<<< HEAD
     <title>Sales Record</title>
 =======
-    <title>SB Admin - Dashboard</title>
+    <title>Dashboard</title>
 >>>>>>> parent of 7033cd8... Delete Product
 
     <!-- Bootstrap core CSS-->
