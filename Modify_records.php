@@ -1,6 +1,6 @@
 <?php
 	include 'includes\dbconnect.php';
-	if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['add_product']))
+	if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['edit_product']))
 		if(isset($_POST['productName']) && 
 		isset($_POST['productQuantity']) && 
 		isset($_POST['productPrice']))
@@ -10,13 +10,23 @@
 				$productName = $_POST['productName'];
 				$productQuantity = $_POST['productQuantity'];
 				$productPrice = $_POST['productPrice'];
-				$SQLString = "Update products (productName, productQuantity, productPrice) VALUES ('$productName', '$productQuantity', '$productPrice')";
+		
+		$SQLString="update products set productName='$productName',productQuantity='$productQuantity',productPrice='$productPrice' where productID=".$_POST['id'];
+				//$SQLString = "INSERT INTO products (productName, productQuantity, productPrice) VALUES ('$productName', '$productQuantity', '$productPrice')";
 				//echo $SQLString;
 				if($DBConnect->query($SQLString) === TRUE){
 					$data = "Record updated successfully";
 					header('location: product_overview.php');
 				}
 			}
+		
+		if(isset($_GET['id'])){
+			$query1 = "SELECT * from products where productID=".$_GET['id'];
+						$results = mysqli_query($DBConnect, $query1);
+						$row = mysqli_fetch_array($results);
+						//echo "<pre>";
+						//print_r($row); 			
+		}
 		$DBConnect->close();
 ?>
 
@@ -31,7 +41,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Add products</title>
+    <title>Edit products</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -95,24 +105,25 @@
           <div class="card mb-3">
         <div class="card-header">Edit record</div>
         <div class="card-body">
-          <form method="post" action="add_product.php">
+          <form method="post" action="Modify_records.php">
 			<!-- Show encountered error here -->
 			<?php include('includes\errors.php'); ?>
             <div class="form-group">
               <div class="form-group">
 			    <label for="productName">Product Name</label>
-                <input name="productName" type="text" class="form-control" placeholder="Product Name" required="required" autofocus="autofocus">
+                <input name="productName" type="text" class="form-control" value="<?php echo $row['productName']?>" placeholder="Product Name" required="required" autofocus="autofocus">
+                <input type="hidden" name="id" value="<?php echo $_GET['id']?>">
               </div>
             </div>
             <div class="col-6 form-group">
               <div class="row form-group">
 				  <div style="padding-left: 0px;" class="col-3">
 					<label for="productQuantity">Product Quantity</label>
-					<input name="productQuantity" type="number" class="form-control" required="required">
+					<input name="productQuantity" placeholder="Enter Quantity" type="number" class="form-control" value="<?php echo $row['productQuantity']?>" required="required">
 				  </div>
 				  <div class="col-3">
 					<label for="productPrice">Product Price</label>
-					<input name="productPrice" type="number" class="form-control" required="required">
+					<input name="productPrice" type="number" placeholder="Enter Price" class="form-control" value="<?php echo $row['productPrice']?>" required="required">
 				  </div>
               </div>
             </div>
