@@ -11,11 +11,10 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-<<<<<<< HEAD
     <title>Sales Record</title>
-=======
+
     <title>Dashboard</title>
->>>>>>> parent of 7033cd8... Delete Product
+
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -35,11 +34,8 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-<<<<<<< HEAD
+
       <a class="navbar-brand mr-1" href="product_overview.php">Family Aid Pharmacy Inc</a>
-=======
-      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
->>>>>>> parent of 7033cd8... Delete Product
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
