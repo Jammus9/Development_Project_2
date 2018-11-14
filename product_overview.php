@@ -156,7 +156,7 @@
 									<td>".($row['productName'])."</td>
 									<td>".($row['productQuantity'])."</td>
 									<td>".($row['productPrice'])."<a class='float-right' style='color: inherit;' href='includes\delete_product.php?id=".$row['productID']."'><span class='fa fa-trash-alt'></span></a></td>
-                  <td><a class='float-right' style='color: inherit;' href='Modify_records.php'><span class='fa fa-edit'></span></a></td>
+                  <td><a class='float-right' style='color: inherit;' href='Modify_records.php?id=".$row['productID']."'><span class='fa fa-edit'></span></a></td>
 								</tr>";
 						}
 					  ?>

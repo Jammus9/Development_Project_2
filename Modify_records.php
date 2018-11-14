@@ -1,6 +1,6 @@
 <?php
 	include 'includes\dbconnect.php';
-	if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['edit_product']))
+	if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['add_product']))
 		if(isset($_POST['productName']) && 
 		isset($_POST['productQuantity']) && 
 		isset($_POST['productPrice']))
