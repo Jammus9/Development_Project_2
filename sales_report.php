@@ -33,16 +33,61 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-
-      <a class="navbar-brand mr-1" href="product_overview.php">Family Aid Pharmacy Inc</a>
-
+      <a class="navbar-brand mr-1" href="analytics.php">Family Aid Pharmacy Inc</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
       </button>
 
-      <!-- Navbar -->
+     
+     <!-- Navbar -->
       <ul class="navbar-nav ml-auto pull-right">
+        <!-- Notification -->
+        <li class="nav-item dropdown no-arrow mx-1">
+          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <i class="fas fa-bell fa-fw"></i>
+            
+              <?php
+              $con = mysqli_connect("localhost", "root", "", "dp2");
+              $count = 0;
+              $result = mysqli_query($con, "SELECT * from products");
+              ?>
+              
+              <?php
+              while($row = mysqli_fetch_assoc($result))
+                {
+                  if($row['productQuantity'] < 20)
+                  {
+                    $rows[] = $row;
+                    $count ++;  
+                  }
+                }
+
+                if($count > 0){ ?>
+                    <span class="badge badge-danger">
+                        <?php echo $count;?>
+                    </span>
+                 <?php } ?>
+          </a>
+
+          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
+
+          <?php
+              foreach($rows as $row)
+                {
+                  if($row['productQuantity'] < 20)
+                  {
+                    echo 
+                    "<a class='dropdown-item' href='#'> Stock of ". " " . $row['productName'] . " only has " . $row['productQuantity'] . " " . "left</a>
+                     <div class='dropdown-divider'></div>"; 
+                  }
+                }
+                ?>
+            
+              </div>
+            </li>
+
+
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-circle fa-fw"></i>
@@ -71,9 +116,9 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="product_overview.php">Product Overview</a>
+              <a href="analytics.php">Analytics</a>
             </li>
-            <li class="breadcrumb-item active">Sales Record Table</li>
+            <li class="breadcrumb-item active">Sales Report</li>
           </ol>
 		  
 		  <div class="row">
@@ -81,7 +126,7 @@
               <div class="card mb-3">
                 <div class="card-header">
                   <i class="fas fa-chart-bar"></i>
-                  Weekly Sales Report</div>
+					Sales Report</div>
                 <div class="card-body">
                   <form method="post" action="export.php" align="left">
                  <input type="submit" name="export" value="CSV Export" class="btn btn-primary"  />
@@ -89,26 +134,26 @@
                  <br />
 				 
 				 <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <table class="table table-bordered" width="100%" cellspacing="0">
                   <thead>
                     <tr>
-                      <th>Product ID</th>
                       <th>Product Name</th>
                       <th>Quantity</th>
                       <th>Price</th>
+					  <th>TotalRevenue</th>
                     </tr>
                   </thead>
                   <tbody>
                       <?php
-						$query1 = "SELECT * from orders";
+						$query1 = "SELECT productName, productQuantity, productPrice ,(productQuantity * productPrice) as TotalRevenue
+from products";
 						$results = mysqli_query($DBConnect, $query1);
 						while ($row = mysqli_fetch_array($results)) {
 							echo "
-								<tr>
-									<td>".($row['orderID'])."</td>
 									<td>".($row['productName'])."</td>
-									<td>".($row['quantity'])."</td>
-									<td>".($row['date'])."</td>
+									<td>".($row['productQuantity'])."</td>
+									<td>".($row['productPrice'])."</td>
+									<td>".($row['TotalRevenue'])."</td>
 								</tr>";
 						}
 					  ?>
@@ -121,95 +166,7 @@
             </div>
           </div>
 		  
-		  <div class="row">
-            <div class="col-lg-12">
-              <div class="card mb-3">
-                <div class="card-header">
-                  <i class="fas fa-chart-bar"></i>
-                  Monthly Sales Report</div>
-                <div class="card-body">
-                  <form method="post" action="export.php" align="left">
-                 <input type="submit" name="export" value="CSV Export" class="btn btn-primary"  />
-                 </form>
-                 <br />
-				 
-				 <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Product ID</th>
-                      <th>Product Name</th>
-                      <th>Quantity</th>
-                      <th>Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                      <?php
-						$query1 = "SELECT * from orders";
-						$results = mysqli_query($DBConnect, $query1);
-						while ($row = mysqli_fetch_array($results)) {
-							echo "
-								<tr>
-									<td>".($row['orderID'])."</td>
-									<td>".($row['productName'])."</td>
-									<td>".($row['quantity'])."</td>
-									<td>".($row['date'])."</td>
-								</tr>";
-						}
-					  ?>
-                  </tbody>
-                </table>
-              </div>
-                </div>
-                <div class="card-footer small text-muted"></div>
-              </div>
-            </div>
-          </div>
-		  
-		  <div class="row">
-            <div class="col-lg-12">
-              <div class="card mb-3">
-                <div class="card-header">
-                  <i class="fas fa-chart-bar"></i>
-                  Yearly Sales Report</div>
-                <div class="card-body">
-                  <form method="post" action="export.php" align="left">
-                 <input type="submit" name="export" value="CSV Export" class="btn btn-primary"  />
-                 </form>
-                 <br />
-				 
-				 <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>Product ID</th>
-                      <th>Product Name</th>
-                      <th>Quantity</th>
-                      <th>Price</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                      <?php
-						$query1 = "SELECT * from orders";
-						$results = mysqli_query($DBConnect, $query1);
-						while ($row = mysqli_fetch_array($results)) {
-							echo "
-								<tr>
-									<td>".($row['orderID'])."</td>
-									<td>".($row['productName'])."</td>
-									<td>".($row['quantity'])."</td>
-									<td>".($row['date'])."</td>
-								</tr>";
-						}
-					  ?>
-                  </tbody>
-                </table>
-              </div>
-                </div>
-                <div class="card-footer small text-muted"></div>
-              </div>
-            </div>
-          </div>
+		 
 
           <!-- DataTables Example -->
        <!--   <div class="card mb-3">
@@ -235,15 +192,15 @@
                   </thead>
                   <tbody>
                       <?php
-						$query1 = "SELECT * from products";
+						$query1 = "SELECT * from orders";
 						$results = mysqli_query($DBConnect, $query1);
 						while ($row = mysqli_fetch_array($results)) {
 							echo "
 								<tr>
-									<td>".($row['productID'])."</td>
+									<td>".($row['orderID'])."</td>
 									<td>".($row['productName'])."</td>
-									<td>".($row['productQuantity'])."</td>
-									<td>".($row['productPrice'])."</td>
+									<td>".($row['quantity'])."</td>
+									<td>".($row['date'])."</td>
 								</tr>";
 						}
 					  ?>

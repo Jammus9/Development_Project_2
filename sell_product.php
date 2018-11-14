@@ -1,3 +1,6 @@
+<?php
+	include('includes\place_order.php');
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -9,7 +12,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Dashboard</title>
+    <title>SB Admin - Dashboard</title>
 
     <!-- Bootstrap core CSS-->
     <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -29,40 +32,14 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Start</a>
+      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
       </button>
 
-      <!-- Navbar Search -->
-      <form class="d-none d-md-inline-block form-inline ml-auto mr-0 mr-md-3 my-2 my-md-0">
-        <div class="input-group">
-          <input type="text" class="form-control" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-          <div class="input-group-append">
-            <button class="btn btn-primary" type="button">
-              <i class="fas fa-search"></i>
-            </button>
-          </div>
-        </div>
-      </form>
-
       <!-- Navbar -->
-      <ul class="navbar-nav ml-auto ml-md-0">
-	 <!-- 
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-bell fa-fw"></i>
-            <span class="badge badge-danger">9+</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
-        </li>
-	-->
+      <ul class="navbar-nav ml-auto pull-right">
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-circle fa-fw"></i>
@@ -75,41 +52,13 @@
           </div>
         </li>
       </ul>
-
     </nav>
 
     <div id="wrapper">
 
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
-        <li class="nav-item active">
-          <a class="nav-link" href="index.html">
-            <i class="fas fa-fw fa-tachometer-alt"></i>
-            <span>Dashboard</span>
-          </a>
-        </li>
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="pagesDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-fw fa-folder"></i>
-            <span>Pages</span>
-          </a>
-          <div class="dropdown-menu" aria-labelledby="pagesDropdown">
-            <h6 class="dropdown-header">Login Screens:</h6>
-            <a class="dropdown-item" href="login.html">Login</a>
-            <a class="dropdown-item" href="register.html">Register</a>
-            <a class="dropdown-item" href="forgot-password.html">Forgot Password</a>
-          </div>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="charts.html">
-            <i class="fas fa-fw fa-chart-area"></i>
-            <span>Charts</span></a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" href="tables.html">
-            <i class="fas fa-fw fa-table"></i>
-            <span>Sales Record Overview</span></a>
-        </li>
+	    <?php include('includes\user_sidebar.php') ?>
       </ul>
 
       <div id="content-wrapper">
@@ -128,48 +77,40 @@
           <div class="card mb-3">
             <div class="card-header">
               <i class="fas fa-table"></i>
-              Data Table</div>
+              Product information</div>
             <div class="card-body">
-              <div class="table-responsive">
-                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                  <thead>
-                    <tr>
-                      <th>SalesID</th>
-                      <th>Total amount</th>
-                      <th>Sold Date</th>
-                      <th>Update</th>
-                      <th>Delete</th>
-                    </tr>
-                  </thead>
-                  <tfoot>
-                    <tr>
-                      <th>SalesID</th>
-                      <th>Total amount</th>
-                      <th>Sold Date</th>
-                      <th>Update</th>
-                      <th>Delete</th>
-                    </tr>
-                  </tfoot>
-                  <tbody>
-                    <tr>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                    </tr>
-                   
-                    
-
-
-                  </tbody>
-                </table>
-              </div>
+			<?php include('includes\errors.php'); ?>
+			
+			<?php
+			if(isset($_POST['id']))
+				$productID = $_POST['id'];
+			else
+				$productID = $_GET['id'];
+				$query1 = "SELECT * from products WHERE productID='$productID'";
+				$results = mysqli_query($DBConnect, $query1);
+				$row = mysqli_fetch_assoc($results);
+				$_SESSION['productID'] = $productID;
+			?>
+				<form action="sell_product.php" method="post">
+				<input type='hidden' name='id' value='<?php echo "$productID";?>'/> 
+					<div class="row">
+						<span class="col-6" style="font-size: 42px">Product ID: <?php echo $row['productID']?></span>
+						<span class="col-6" style="font-size: 42px">Product Name: <?php echo $row['productName']?></span></br>
+						
+						<span class="col-6" style="font-size: 42px">Product Quantity: <?php echo $row['productQuantity']?></span>
+						<span class="col-6" style="font-size: 42px">Product Price: <?php echo $row['productPrice']?></span></br>
+						
+						<div style="margin-top: 14px;" class="col-6 input-group input-group-lg">
+							<div class="input-group-prepend">
+								<span class="input-group-text" id="inputGroup-sizing-lg">Quantity</span>
+							</div>
+							<input name="quantity" type="text" class="col-2 form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-lg">
+						</div>
+					</div>
+					<button style="margin-top: 24px;" type="submit" class="mx-auto btn btn-default">Submit</button>
+				</form>
             </div>
-            <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
           </div>
-
-
         </div>
         <!-- /.container-fluid -->
 
@@ -177,7 +118,7 @@
         <footer class="sticky-footer">
           <div class="container my-auto">
             <div class="copyright text-center my-auto">
-              <span>Copyright © Mark 2018</span>
+              <span>Copyright © Your Website 2018</span>
             </div>
           </div>
         </footer>
@@ -206,7 +147,7 @@
           <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
           <div class="modal-footer">
             <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-            <a class="btn btn-primary" href="login.html">Logout</a>
+            <a class="btn btn-primary" href="login.php">Logout</a>
           </div>
         </div>
       </div>

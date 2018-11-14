@@ -115,7 +115,7 @@ $(document).ready(function(){
 						yAxes: [{
 							ticks: {
 								min: 0,
-								stepSize: 1
+								stepSize: 10
 							},
 							gridLines: {
 								display: true
@@ -144,7 +144,7 @@ $(document).ready(function(){
 						yAxes: [{
 							ticks: {
 								min: 0,
-								stepSize: 1
+								stepSize: 50
 							},
 							gridLines: {
 								display: true

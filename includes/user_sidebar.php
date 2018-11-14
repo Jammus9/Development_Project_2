@@ -3,12 +3,6 @@ if(isset($_SESSION['position']))
 	if($_SESSION['position'] == "Manager")
 		echo '
 			<li class="nav-item">
-				<a class="nav-link" href="dashboard.php">
-					<i class="fas fa-fw fa-tachometer-alt"></i>
-					<span>Dashboard</span>
-				</a>
-			</li>
-			<li class="nav-item">
 				<a class="nav-link" href="analytics.php">
 					<i class="fas fa-fw fa-chart-area"></i>
 					<span>Analytics</span>
@@ -31,13 +25,21 @@ if(isset($_SESSION['position']))
 					<i class="fas fa-fw fa-table"></i>
 					<span>Sales Records</span>
 				</a>
-			</li>';
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" href="sales_report.php">
+					<i class="fas fa-fw fa-table"></i>
+					<span>Sales Report</span>
+				</a>
+			</li>
+			';
 	else if($_SESSION['position'] == "Staff")
 		echo '
 			<li class="nav-item active">
-				<a class="nav-link" href="sales_records.php">
+				<a class="nav-link" href="inventory.php">
 					<i class="fas fa-fw fa-table"></i>
-					<span>Sales Records</span>
+					<span>Inventory</span>
 				</a>
-			</li>';
+			</li>
+			';
 ?>

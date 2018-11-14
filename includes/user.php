@@ -12,9 +12,9 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['login_user'])) {
 			$_SESSION['username'] = $row['username'];
 			$_SESSION['position'] = $row['position'];
 			if($row['position'] == "Manager")
-				header('location: dashboard.php');
+				header('location: analytics.php');
 			if($row['position'] == "Staff")
-				header('location: sales_records.php');
+				header('location: inventory.php');
 		}
 		else
 			array_push($errors, "Wrong username/password combination");
