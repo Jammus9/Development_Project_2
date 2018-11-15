@@ -128,7 +128,7 @@
                   <i class="fas fa-chart-bar"></i>
 					Sales Report</div>
                 <div class="card-body">
-                  <form method="post" action="export.php" align="left">
+                  <form method="post" action="includes/export.php" align="left">
                  <input type="submit" name="export" value="CSV Export" class="btn btn-primary"  />
                  </form>
                  <br />
