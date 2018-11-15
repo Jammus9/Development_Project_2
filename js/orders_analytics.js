@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	var date = ('0' + (new Date().getDate()-1)).slice(-2) + '-' + ('0' + (new Date().getMonth()+1)).slice(-2) + '-' + new Date().getFullYear();
+	var date = ('0' + (new Date().getDate())).slice(-2) + '-' + ('0' + (new Date().getMonth()+1)).slice(-2) + '-' + new Date().getFullYear();
 	console.log(date);
 	$.ajax({
 		url: "./includes/analytic_orders_data.php",
