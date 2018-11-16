@@ -1,5 +1,5 @@
 <?php
-	session_start();
+  session_start();
 ?>
 
 <!DOCTYPE html>
@@ -31,63 +31,16 @@
 
   <body id="page-top">
 
-   <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="analytics.php">Family Aid Pharmacy Inc</a>
+      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
       </button>
 
-     
-     <!-- Navbar -->
+      <!-- Navbar -->
       <ul class="navbar-nav ml-auto pull-right">
-        <!-- Notification -->
-        <li class="nav-item dropdown no-arrow mx-1">
-          <a class="nav-link dropdown-toggle" href="#" id="alertsDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-            <i class="fas fa-bell fa-fw"></i>
-            
-              <?php
-              $con = mysqli_connect("localhost", "root", "", "dp2");
-              $count = 0;
-              $result = mysqli_query($con, "SELECT * from products");
-              ?>
-              
-              <?php
-              while($row = mysqli_fetch_assoc($result))
-                {
-                  if($row['productQuantity'] < 20)
-                  {
-                    $rows[] = $row;
-                    $count ++;  
-                  }
-                }
-
-                if($count > 0){ ?>
-                    <span class="badge badge-danger">
-                        <?php echo $count;?>
-                    </span>
-                 <?php } ?>
-          </a>
-
-          <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
-
-          <?php
-              foreach($rows as $row)
-                {
-                  if($row['productQuantity'] < 20)
-                  {
-                    echo 
-                    "<a class='dropdown-item' href='#'> Stock of ". " " . $row['productName'] . " only has " . $row['productQuantity'] . " " . "left</a>
-                     <div class='dropdown-divider'></div>"; 
-                  }
-                }
-                ?>
-            
-              </div>
-            </li>
-
-
         <li class="nav-item dropdown no-arrow">
           <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             <i class="fas fa-user-circle fa-fw"></i>
@@ -106,7 +59,7 @@
 
       <!-- Sidebar -->
       <ul class="sidebar navbar-nav">
-	    <?php include('includes\user_sidebar.php') ?>
+      <?php include('includes\user_sidebar.php') ?>
       </ul>
 
       <div id="content-wrapper">
@@ -115,7 +68,10 @@
 
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
-            <li class="breadcrumb-item active">Analytics</li>
+            <li class="breadcrumb-item">
+              <a href="#">Dashboard</a>
+            </li>
+            <li class="breadcrumb-item active">Charts</li>
           </ol>
 
           <div class="row">
@@ -131,8 +87,8 @@
               </div>
             </div>
           </div>
-		  
-		  <div class="row">
+      
+      <div class="row">
             <div class="col-lg-12">
               <div class="card mb-3">
                 <div class="card-header">
@@ -145,13 +101,74 @@
               </div>
             </div>
           </div>
-		  
+      
           <div class="row">
             <div class="col-lg-12">
               <div class="card mb-3">
                 <div class="card-header">
-                  <i class="fas fa-chart-bar"></i>
-                  Yearly</div>
+                    <i class="fas fa-chart-bar"></i>
+                   
+                      <!-- select individual product  -->   
+                          <div class="input-group-prepend float-right">
+                              <label class="input-group-text" for="inputGroupSelect01" >Products</label>
+
+                              <form action = "includes/analytic_orders_data.php" method = "POST">
+                           
+                            <select class="custom-select" id="Product" name = "PName" onchange="this.form.submit()">
+                               
+
+                              <?php
+                                  $con = mysqli_connect("localhost", "root", "", "dp2");
+                                  $count = 0;
+                                  $result = mysqli_query($con, "SELECT productName FROM orders GROUP BY productName ORDER BY productName");
+                                  
+                                  while($row = mysqli_fetch_assoc($result))
+                                  {
+                                     $rows[] = $row;
+                                  }
+
+                                  foreach($rows as $row)
+                                   {
+                                      echo "<option value = " . "'" . $row['productName'] . "'" . ">" . $row['productName'] . "</option>";
+                                   }?> 
+
+
+                                   <!--  foreach($rows as $row)
+                                    {
+                                      if($row['productQuantity'] < 20)
+                                      {
+                                        echo 
+                                        "<a class='dropdown-item' href='#'> Stock of ". " " . $row['productName'] . " only has " . $row['productQuantity'] . " " . "left</a>
+                                         <div class='dropdown-divider'></div>"; 
+                                      }
+                                    }
+
+
+
+
+                              <option value = "All">All</option>
+                              <option value="medicine">Medicine</option>
+                              <option value="Penicilin">Penicilin</option>
+                              <option value="Panadol">Panadol</option>
+                              <option value = "Acetaminophen">Acetaminophen</option>
+                              <option value = "Lisinopril">Lisinopril</option>
+                              <option value = "Zoloft">Zoloft</option> -->
+                            </select>
+
+                            <!-- <script>
+                              var value;
+                                function split(value)
+                                {
+                                  this.value = value;
+                                  alert(this.value);
+                                }
+                               </script> -->
+
+                            <!-- <input type="hidden" name="Flag" value="0"/> -->
+                          </form>
+                        </div>
+                    Yearly
+                </div>
                 <div class="card-body">
                   <canvas id="myBarChartYear" width="100%" height="50"></canvas>
                 </div>

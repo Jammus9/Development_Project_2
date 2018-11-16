@@ -69,16 +69,22 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
 
           <?php
-              foreach($rows as $row)
-                {
-                  if($row['productQuantity'] < 20)
+              if($count > 0){
+                  foreach($rows as $row)
                   {
-                    echo 
-                    "<a class='dropdown-item' href='#'> Stock of ". " " . $row['productName'] . " only has " . $row['productQuantity'] . " " . "left</a>
-                     <div class='dropdown-divider'></div>"; 
+                    if($row['productQuantity'] < 20)
+                    {
+                      echo 
+                      "<a class='dropdown-item' href='#'> Stock of ". " " . $row['productName'] . " only has " . $row['productQuantity'] . " " . "left</a>
+                       <div class='dropdown-divider'></div>"; 
+                    }
                   }
-                }
-                ?>
+              }
+              else
+                echo "No records";
+              
+              
+          ?>
             
               </div>
             </li>
