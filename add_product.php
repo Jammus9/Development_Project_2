@@ -152,15 +152,18 @@
               </div>
             </div>
             <div class="col-6 form-group">
-              <div class="row form-group">
+            <div class="row form-group">
+			  <tr>
 				  <div style="padding-left: 0px;" class="col-3">
-					<label for="productQuantity">Product Quantity</label>
-					<input name="productQuantity" type="number" class="form-control" required="required">
+					<th><label for="productQuantity">Product Quantity</label></th>
+					<th><input name="productQuantity" placeholder="Enter Quantity" type="number" class="form-control" value="<?php echo $row['productQuantity']?>" required="required"></th>
 				  </div>
+				  
 				  <div class="col-3">
-					<label for="productPrice">Product Price</label>
-					<input name="productPrice" type="number" class="form-control" required="required">
+					<th><label for="productPrice">Product Price</label></th>
+					<th><input name="productPrice" type="number" placeholder="Enter Price" class="form-control" value="<?php echo $row['productPrice']?>" required="required"></th>
 				  </div>
+				  </tr>
               </div>
             </div>
             <button class="btn btn-primary" type="submit" name="add_product">ADD</button>
