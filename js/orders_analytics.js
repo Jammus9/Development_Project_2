@@ -1,17 +1,6 @@
 $(document).ready(function(){
 	var date = ('0' + (new Date().getDate())).slice(-2) + '-' + ('0' + (new Date().getMonth()+1)).slice(-2) + '-' + new Date().getFullYear();
 	console.log(date);
-
-	// var PName = document.getElementById('Product').value;
-	// $.ajax({
-	// 	type: "POST",
-	// 	url: "test.php",
-	// 	data: ({PName}),
-	// 	success: function(data){
-	// 		alert(data);
-	// 	}
-	// });
-
 	$.ajax({
 		url: "./includes/analytic_orders_data.php",
 		method: "GET",
