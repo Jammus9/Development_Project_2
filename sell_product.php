@@ -32,7 +32,7 @@
 
     <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="index.html">Start Bootstrap</a>
+      <a class="navbar-brand mr-1" href="index.html">Family Aid Pharmacy Inc</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
@@ -68,9 +68,9 @@
           <!-- Breadcrumbs-->
           <ol class="breadcrumb">
             <li class="breadcrumb-item">
-              <a href="#">Dashboard</a>
+              <a href="inventory.php">Inventory</a>
             </li>
-            <li class="breadcrumb-item active">Tables</li>
+            <li class="breadcrumb-item active">Sell Product</li>
           </ol>
 
           <!-- DataTables Example -->
@@ -94,11 +94,11 @@
 				<form action="sell_product.php" method="post">
 				<input type='hidden' name='id' value='<?php echo "$productID";?>'/> 
 					<div class="row">
-						<span class="col-6" style="font-size: 42px">Product ID: <?php echo $row['productID']?></span>
-						<span class="col-6" style="font-size: 42px">Product Name: <?php echo $row['productName']?></span></br>
+						<span class="col-6" style="font-size: 20px">Product ID: <?php echo $row['productID']?></span>
+						<span class="col-7" style="font-size: 20px">Product Name: <?php echo $row['productName']?></span></br>
 						
-						<span class="col-6" style="font-size: 42px">Product Quantity: <?php echo $row['productQuantity']?></span>
-						<span class="col-6" style="font-size: 42px">Product Price: <?php echo $row['productPrice']?></span></br>
+						<span class="col-8" style="font-size: 20px">Product Quantity: <?php echo $row['productQuantity']?></span>
+						<span class="col-9" style="font-size: 20px">Product Price: <?php echo $row['productPrice']?></span></br>
 						
 						<div style="margin-top: 14px;" class="col-6 input-group input-group-lg">
 							<div class="input-group-prepend">

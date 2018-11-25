@@ -28,16 +28,15 @@
 
   <body id="page-top">
 
-    <nav class="navbar navbar-expand navbar-dark bg-dark static-top">
+<nav class="navbar navbar-expand navbar-dark bg-dark static-top">
 
-      <a class="navbar-brand mr-1" href="#">Family Aid Pharmacy Inc</a>
+      <a class="navbar-brand mr-1" href="analytics.php">Family Aid Pharmacy Inc</a>
 
       <button class="btn btn-link btn-sm text-white order-1 order-sm-0" id="sidebarToggle" href="#">
         <i class="fas fa-bars"></i>
       </button>
 
-     
-     <!-- Navbar -->
+      <!-- Navbar -->
       <ul class="navbar-nav ml-auto pull-right">
         <!-- Notification -->
         <li class="nav-item dropdown no-arrow mx-1">
@@ -70,16 +69,22 @@
           <div class="dropdown-menu dropdown-menu-right" aria-labelledby="alertsDropdown">
 
           <?php
-              foreach($rows as $row)
-                {
-                  if($row['productQuantity'] < 20)
+              if($count > 0){
+                  foreach($rows as $row)
                   {
-                    echo 
-                    "<a class='dropdown-item' href='#'> Stock of ". " " . $row['productName'] . " only has " . $row['productQuantity'] . " " . "left</a>
-                     <div class='dropdown-divider'></div>"; 
+                    if($row['productQuantity'] < 20)
+                    {
+                      echo 
+                      "<a class='dropdown-item' href='#'> Stock of ". " " . $row['productName'] . " only has " . $row['productQuantity'] . " " . "left</a>
+                       <div class='dropdown-divider'></div>"; 
+                    }
                   }
-                }
-                ?>
+              }
+              else
+                echo "No records";
+              
+              
+          ?>
             
               </div>
             </li>
