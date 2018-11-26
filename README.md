@@ -14,7 +14,7 @@ Use following steps to import the database
 
 Username and Passwrd
 Manager
-username: manager@pharma.com
+username: Manager@pharma.com
 password: 123
 
 Staff
