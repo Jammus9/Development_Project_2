@@ -110,27 +110,25 @@
 			<?php include('includes\errors.php'); ?>
             <div class="form-group">
               <div class="form-group">
-			    <label for="productName" class="col-6">Product Name</label>
+              <div class="col-6 form-group">
+			    <label for="productName">Product Name</label>
                 <input name="productName" type="text" class="form-control" value="<?php echo $row['productName']?>" placeholder="Product Name" required="required" autofocus="autofocus">
                 <input type="hidden" name="id" value="<?php echo $_GET['id']?>">
               </div>
-            </div>
-            <div class="col-6 form-group">
-              <div class="row form-group">
-			  <tr>
-				  <div style="padding-left: 0px;" class="col-3">
-					<th><label for="productQuantity" class="col-7">Product Quantity</label></th>
-					<th><input name="productQuantity" placeholder="Enter Quantity" type="number" class="form-control" value="<?php echo $row['productQuantity']?>" required="required"></th>
+            
+				<div class="col-6 form-group">
+					<label for="productQuantity">Product Quantity</label>
+					<input name="productQuantity" placeholder="Enter Quantity" type="number" class="form-control" value="<?php echo $row['productQuantity']?>" required="required">
 				  </div>
-				  
-				  <div class="col-3">
-					<th><label for="productPrice" class="col-8">Product Price</label></th>
-					<th><input name="productPrice" type="number" placeholder="Enter Price" class="form-control" value="<?php echo $row['productPrice']?>" required="required"></th>
+				  <div class="col-6 form-group">
+					<label for="productPrice">Product Price</label>
+					<input name="productPrice" type="number" placeholder="Enter Price" class="form-control" value="<?php echo $row['productPrice']?>" required="required">
 				  </div>
-				  </tr>
-              </div>
-            </div>
-            <button class="btn btn-primary" type="submit" name="add_product">EDIT</button>
+				  <div class="col-6 form-group">
+				   <button class="btn btn-primary" type="submit" name="add_product">EDIT</button>
+				   </div>
+				  </div>
+           </div>
           </form>
         </div>
       </div>

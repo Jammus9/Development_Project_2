@@ -150,31 +150,29 @@
           <form method="post" action="add_product.php">
 			<!-- Show encountered error here -->
 			<?php include('includes\errors.php'); ?>
-            <div class="form-group">
-              <div class="form-group">
-			    <label for="productName" class="col-6">Product Name</label>
+           <div class="form-group">
+              <div class="col-6 form-group">
+			    <label for="productName">Product Name</label>
                 <input name="productName" type="text" class="form-control" placeholder="Product Name" required="required" autofocus="autofocus">
               </div>
+			  <div class="col-6 form-group">
+			  <label for="productQuantity">Product Quantity</label>
+					<input name="productQuantity" type="number" placeholder="Product Quantity" class="form-control" required="required">
             </div>
-            <div class="col-6 form-group">
-            <div class="row form-group">
-			  <tr>
-				  <div style="padding-left: 0px;" class="col-3">
-					<th><label for="productQuantity" class="col-6">Product Quantity</label></th>
-					<th><input name="productQuantity" placeholder="Enter Quantity" type="number" class="form-control" value="<?php echo $row['productQuantity']?>" required="required"></th>
-				  </div>
-				  
-				  <div class="col-3">
-					<th><label for="productPrice" class="col-7">Product Price</label></th>
-					<th><input name="productPrice" type="number" placeholder="Enter Price" class="form-control" value="<?php echo $row['productPrice']?>" required="required"></th>
-				  </div>
-				  </tr>
-              </div>
+				<div class="col-6 form-group">
+			<label for="productPrice">Product Price</label>
+					<input name="productPrice" type="number" placeholder="Product Price" class="form-control" required="required">
+					</div>
+			<div class="col-6 form-group">		
+			<button class="btn btn-primary" type="submit" name="add_product">ADD</button>
+			</div>
             </div>
-            <button class="btn btn-primary" type="submit" name="add_product">ADD</button>
+            
+            
           </form>
         </div>
       </div>
+
         <!-- /.container-fluid -->
 
         <!-- Sticky Footer -->
