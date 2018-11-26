@@ -110,7 +110,7 @@
 			<?php include('includes\errors.php'); ?>
             <div class="form-group">
               <div class="form-group">
-			    <label for="productName">Product Name</label>
+			    <label for="productName" class="col-6">Product Name</label>
                 <input name="productName" type="text" class="form-control" value="<?php echo $row['productName']?>" placeholder="Product Name" required="required" autofocus="autofocus">
                 <input type="hidden" name="id" value="<?php echo $_GET['id']?>">
               </div>
@@ -119,12 +119,12 @@
               <div class="row form-group">
 			  <tr>
 				  <div style="padding-left: 0px;" class="col-3">
-					<th><label for="productQuantity">Product Quantity</label></th>
+					<th><label for="productQuantity" class="col-7">Product Quantity</label></th>
 					<th><input name="productQuantity" placeholder="Enter Quantity" type="number" class="form-control" value="<?php echo $row['productQuantity']?>" required="required"></th>
 				  </div>
 				  
 				  <div class="col-3">
-					<th><label for="productPrice">Product Price</label></th>
+					<th><label for="productPrice" class="col-8">Product Price</label></th>
 					<th><input name="productPrice" type="number" placeholder="Enter Price" class="form-control" value="<?php echo $row['productPrice']?>" required="required"></th>
 				  </div>
 				  </tr>

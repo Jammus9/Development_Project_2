@@ -30,7 +30,7 @@
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">You are in Delete Mode?</h5>
+            <h5 class="modal-title" align="center"id="exampleModalLabel">You are in Delete Mode?</h5>
             <button class="close" type="button" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">×</span>
             </button>
@@ -68,7 +68,7 @@
 					  ?>
 					<tr>
 					<th></th>
-					 <th><a class="btn btn-secondary"  href="product_overview.php" type="button" data-dismiss="modal">Cancel</a></th>
+					 <th><a class="btn btn-primary"  href="product_overview.php" type="button" data-dismiss="modal">Cancel</a></th>
             
 			</tr>
 			
