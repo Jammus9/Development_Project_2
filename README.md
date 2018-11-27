@@ -32,3 +32,5 @@ Overview product
 Add, Remove and Edit Products
 Sales Report and export to CSV
 Sales Record table
+
+For further information, please refer to: https://github.com/Jammus9/Development_Project_2
